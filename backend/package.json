@@ -1,5 +1,5 @@
 {
-  "name": "savor-find-back",
+  "name": "backend",
   "version": "0.0.1",
   "description": "",
   "author": "",
@@ -20,9 +20,11 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
-    "@nestjs/common": "^10.0.0",
-    "@nestjs/core": "^10.0.0",
+    "@nestjs/common": "^10.3.10",
+    "@nestjs/core": "^10.3.10",
+    "@nestjs/mongoose": "^10.0.10",
     "@nestjs/platform-express": "^10.0.0",
+    "mongoose": "^8.5.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
   },
