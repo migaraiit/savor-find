@@ -4,6 +4,10 @@ import styles from "../styles/enter.module.css";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Spacer from "../components/Spacer";
+import Form from "react-bootstrap/Form";
+import InputGroup from "react-bootstrap/InputGroup";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 const EnterPage: React.FC = () => {
   const [index, setIndex] = useState(0);
@@ -49,12 +53,15 @@ const EnterPage: React.FC = () => {
       >
         <Carousel.Item>
           <img className="d-block w-100" src="/enter1.jpg" alt="First slide" />
+          <img className="d-block w-100" src="/enter1.jpg" alt="First slide" />
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src="/enter2.jpg" alt="Second slide" />
+          <img className="d-block w-100" src="/enter1.jpg" alt="First slide" />
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src="/enter3.jpg" alt="Third slide" />
+          <img className="d-block w-100" src="/enter1.jpg" alt="First slide" />
         </Carousel.Item>
       </Carousel>
       <div className={styles.content}>
@@ -68,14 +75,71 @@ const EnterPage: React.FC = () => {
       <Spacer />
       <div
         ref={mainPageRef}
-        className={styles.mainContent}
+        // className={styles.mainContent}
         style={{ overflow: overflow }}
       >
-        <h1>Welcome to the Main Content</h1>
-        <p>This is the rest of your website content.</p>
-        <h1>Welcome to the Main Content</h1>
-
-        {/* Add more content here */}
+        <div className={styles.mainContent}>
+          <Form>
+            <Row>
+              <Col xs="auto">
+                <Form.Control
+                  type="text"
+                  placeholder="Search"
+                  className={styles.searchBox}
+                />
+              </Col>
+              <Col xs="auto">
+                <Button
+                  variant="outline-success"
+                  type="submit"
+                  className={styles.button}
+                >
+                  Find
+                </Button>
+              </Col>
+            </Row>
+          </Form>
+        </div>
+        <div>
+          <div className={styles.popularTopic}>
+            <h2>Popular Now</h2>
+          </div>
+          <div className={styles.carouselSection}>
+            <Carousel>
+              <Carousel.Item className={styles.carouselSlide}>
+                <img
+                  className={styles.popularCarouselCard}
+                  src="/enter1.jpg"
+                  alt="First slide"
+                />
+                <img
+                  className={styles.popularCarouselCard}
+                  src="/enter1.jpg"
+                  alt="First slide"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="/enter2.jpg"
+                  alt="Second slide"
+                />
+                <img
+                  className="d-block w-100"
+                  src="/enter1.jpg"
+                  alt="First slide"
+                />
+              </Carousel.Item>
+              <Carousel.Item>
+                <img
+                  className="d-block w-100"
+                  src="/enter3.jpg"
+                  alt="Third slide"
+                />
+              </Carousel.Item>
+            </Carousel>
+          </div>
+        </div>
       </div>
     </div>
   );
