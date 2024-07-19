@@ -8,6 +8,7 @@ import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Link from "next/link";
 
 const EnterPage: React.FC = () => {
   const [index, setIndex] = useState(0);
@@ -103,6 +104,9 @@ const EnterPage: React.FC = () => {
         <div>
           <div className={styles.popularTopic}>
             <h2>Popular Now</h2>
+            <Link href="/restaurantPage">
+              <h6>see all</h6>
+            </Link>
           </div>
           <div className={styles.carouselSection}>
             <Carousel>
