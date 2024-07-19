@@ -6,13 +6,8 @@ import { Restaurant } from './restaurant.schema';
 export class RestaurantController {
   constructor(private readonly restaurantService: RestaurantService) {}
 
-  @Get(':id')
-  async getRestaurant(@Param('id') id: string): Promise<Restaurant> {
-    return this.restaurantService.findOne(id);
-  }
-
   @Get()
-  async getAllRestaurants(): Promise<Restaurant[]> {
+  async findAll(): Promise<Restaurant[]> {
     return this.restaurantService.findAll();
   }
 }

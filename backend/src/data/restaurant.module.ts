@@ -10,7 +10,7 @@ import { RestaurantController } from './restaurant.controller';
       { name: Restaurant.name, schema: RestaurantSchema },
     ]),
   ],
-  controllers: [RestaurantController],
   providers: [RestaurantService],
+  controllers: [RestaurantController],
 })
 export class RestaurantModule {}
