@@ -12,4 +12,8 @@ export class RestaurantService {
   async findAll(): Promise<Restaurant[]> {
     return this.restaurantModel.find().exec();
   }
+
+  async findOne(id: string): Promise<Restaurant> {
+    return this.restaurantModel.findById(id).exec();
+  }
 }

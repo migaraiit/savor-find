@@ -10,4 +10,9 @@ export class RestaurantController {
   async findAll(): Promise<Restaurant[]> {
     return this.restaurantService.findAll();
   }
+
+  @Get(':id')
+  async findOne(@Param('id') id: string): Promise<Restaurant> {
+    return this.restaurantService.findOne(id);
+  }
 }

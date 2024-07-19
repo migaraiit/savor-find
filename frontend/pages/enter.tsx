@@ -9,11 +9,39 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Link from "next/link";
+import axios from "axios";
+import RestaurantCard from "../components/RestaurantCard";
+
+interface Restaurant {
+  _id: string;
+  name: string;
+  location: string;
+  cuisineType: string;
+  rating: number;
+  phoneNumber: string;
+}
 
 const EnterPage: React.FC = () => {
   const [index, setIndex] = useState(0);
   const mainPageRef = useRef<HTMLDivElement>(null);
   const [overflow, setOverflow] = useState<"hidden" | "auto">("hidden");
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/restaurant")
+      .then((response) => {
+        console.log("Fetched Data:", response.data); // Log fetched data
+        setRestaurants(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the restaurants!", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log("Updated Restaurants State:", restaurants);
+  }, [restaurants]);
 
   useEffect(() => {
     return () => {};
@@ -54,15 +82,12 @@ const EnterPage: React.FC = () => {
       >
         <Carousel.Item>
           <img className="d-block w-100" src="/enter1.jpg" alt="First slide" />
-          <img className="d-block w-100" src="/enter1.jpg" alt="First slide" />
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src="/enter2.jpg" alt="Second slide" />
-          <img className="d-block w-100" src="/enter1.jpg" alt="First slide" />
         </Carousel.Item>
         <Carousel.Item>
           <img className="d-block w-100" src="/enter3.jpg" alt="Third slide" />
-          <img className="d-block w-100" src="/enter1.jpg" alt="First slide" />
         </Carousel.Item>
       </Carousel>
       <div className={styles.content}>
@@ -110,37 +135,14 @@ const EnterPage: React.FC = () => {
           </div>
           <div className={styles.carouselSection}>
             <Carousel>
-              <Carousel.Item className={styles.carouselSlide}>
-                <img
-                  className={styles.popularCarouselCard}
-                  src="/enter1.jpg"
-                  alt="First slide"
-                />
-                <img
-                  className={styles.popularCarouselCard}
-                  src="/enter1.jpg"
-                  alt="First slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="/enter2.jpg"
-                  alt="Second slide"
-                />
-                <img
-                  className="d-block w-100"
-                  src="/enter1.jpg"
-                  alt="First slide"
-                />
-              </Carousel.Item>
-              <Carousel.Item>
-                <img
-                  className="d-block w-100"
-                  src="/enter3.jpg"
-                  alt="Third slide"
-                />
-              </Carousel.Item>
+              {restaurants.map((restaurant) => (
+                <Carousel.Item
+                  key={restaurant._id}
+                  style={{ alignContent: "center" }}
+                >
+                  <RestaurantCard restaurant={restaurant} />
+                </Carousel.Item>
+              ))}
             </Carousel>
           </div>
         </div>

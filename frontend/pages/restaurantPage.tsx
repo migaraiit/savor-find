@@ -1,10 +1,39 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Col, Form, ListGroup, Row } from "react-bootstrap";
 import styles from "../styles/restaurantPage.module.css";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
+import Link from "next/link";
+import axios from "axios";
+import RestaurantCard from "../components/RestaurantCard";
+
+interface Restaurant {
+  _id: string;
+  name: string;
+  location: string;
+  cuisineType: string;
+  rating: number;
+  phoneNumber: string;
+}
 
 const restaurantPage = () => {
+  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/restaurant")
+      .then((response) => {
+        console.log("Fetched Data:", response.data); // Log fetched d
+        setRestaurants(response.data);
+      })
+      .catch((error) => {
+        console.error("There was an error fetching the restaurants!", error);
+      });
+  }, []);
+
+  useEffect(() => {
+    console.log("Updated Restaurants State:", restaurants);
+  }, [restaurants]);
   return (
     <div>
       <div className={styles.searchBox}>
@@ -18,13 +47,15 @@ const restaurantPage = () => {
               />
             </Col>
             <Col xs="auto">
-              <Button
-                variant="outline-success"
-                type="submit"
-                className={styles.button}
-              >
-                Find
-              </Button>
+              <Link href="/testPage">
+                <Button
+                  variant="outline-success"
+                  type="submit"
+                  className={styles.button}
+                >
+                  Find
+                </Button>
+              </Link>
             </Col>
           </Row>
         </Form>
@@ -35,27 +66,9 @@ const restaurantPage = () => {
         </div>
         <div className={styles.contentBody}>
           <Row xs={1} md={3} className="g-4">
-            {Array.from({ length: 4 }).map((_, idx) => (
-              <Col key={idx}>
-                <Card style={{ width: "15rem" }}>
-                  <Card.Img variant="top" src="/enter1.jpg" />
-                  <Card.Body>
-                    <Card.Title>Card Title</Card.Title>
-                    <Card.Text>
-                      Some quick example text to build on the card title and
-                      make up the bulk of the card's content.
-                    </Card.Text>
-                  </Card.Body>
-                  <ListGroup className="list-group-flush">
-                    <ListGroup.Item>Cras justo odio</ListGroup.Item>
-                    <ListGroup.Item>Dapibus ac facilisis in</ListGroup.Item>
-                    <ListGroup.Item>Vestibulum at eros</ListGroup.Item>
-                  </ListGroup>
-                  <Card.Body>
-                    <Card.Link href="#">Card Link</Card.Link>
-                    <Card.Link href="#">Another Link</Card.Link>
-                  </Card.Body>
-                </Card>
+            {restaurants.map((restaurant) => (
+              <Col key={restaurant._id}>
+                <RestaurantCard restaurant={restaurant} />
               </Col>
             ))}
           </Row>
