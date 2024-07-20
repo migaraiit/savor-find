@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import axios from "axios";
 import RestaurantCard from "../components/RestaurantCard";
 import { Container, Carousel, Col } from "react-bootstrap";
+import SearchBar from "../components/SearchBar";
 
 interface Restaurant {
   _id: string;
@@ -46,5 +47,32 @@ const testPage = () => {
     </Container>
   );
 };
+
+// const testPage = () => {
+//   const handleSearch = (keyword: string) => {
+//    useEffect(() => {
+//     axios
+//       .get("http://localhost:3000/restaurant", {
+//         params: {
+//           keyword: keyword,
+//         },
+//       })
+//       .then((response) => {
+//         console.log("Fetched Data:", response.data); // Log fetched data
+//         setRestaurants(response.data);
+//       })
+//       .catch((error) => {
+//         console.error("There was an error fetching the restaurants!", error);
+//       });
+//    }
+//   };
+
+//   return (
+//     <div>
+//       <SearchBar onSearch={handleSearch} />
+//       {/* Display search results here */}
+//     </div>
+//   );
+// };
 
 export default testPage;

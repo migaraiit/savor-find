@@ -14,23 +14,23 @@ export class Restaurant {
   @Prop()
   cuisineType: string;
 
-  // @Prop()
-  // priceRange: string;
+  @Prop()
+  priceRange: string;
 
   @Prop()
   rating: number;
 
-  // @Prop([
-  //   {
-  //     user: { type: String },
-  //     comment: { type: String },
-  //     rating: { type: Number },
-  //   },
-  // ])
-  // reviews: Array<{ user: string; comment: string; rating: number }>;
+  @Prop([
+    {
+      user: { type: String },
+      comment: { type: String },
+      rating: { type: Number },
+    },
+  ])
+  reviews: Array<{ user: string; comment: string; rating: number }>;
 
-  // @Prop({ type: Map, of: String })
-  // hours: Record<string, string>;
+  @Prop({ type: Map, of: String })
+  hours: Record<string, string>;
 
   @Prop()
   phoneNumber: string;

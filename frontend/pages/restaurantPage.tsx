@@ -1,5 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { Button, Col, Form, ListGroup, Row } from "react-bootstrap";
+import {
+  Button,
+  Col,
+  Container,
+  Form,
+  ListGroup,
+  Nav,
+  Navbar,
+  Row,
+} from "react-bootstrap";
 import styles from "../styles/restaurantPage.module.css";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
@@ -36,6 +45,21 @@ const restaurantPage = () => {
   }, [restaurants]);
   return (
     <div>
+      <div>
+        <Navbar className={styles.navbar} fixed="top">
+          <Container style={{}}>
+            <Navbar.Brand href="/enter" className={styles.brand}>
+              SavorFind
+            </Navbar.Brand>
+            <Navbar.Toggle />
+            <Navbar.Collapse className="justify-content-end">
+              <Nav>
+                <Nav.Link href="/">Login</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </div>
       <div className={styles.searchBox}>
         <Form>
           <Row>

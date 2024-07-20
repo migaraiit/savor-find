@@ -126,7 +126,11 @@ const EnterPage: React.FC = () => {
             </Row>
           </Form>
         </div>
-        <div>
+        <div
+          style={{
+            width: "150vh",
+          }}
+        >
           <div className={styles.popularTopic}>
             <h2>Popular Now</h2>
             <Link href="/restaurantPage">
@@ -134,7 +138,11 @@ const EnterPage: React.FC = () => {
             </Link>
           </div>
           <div className={styles.carouselSection}>
-            <Carousel>
+            <Carousel
+              style={{
+                width: "50vh",
+              }}
+            >
               {restaurants.map((restaurant) => (
                 <Carousel.Item
                   key={restaurant._id}

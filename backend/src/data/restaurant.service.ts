@@ -16,4 +16,16 @@ export class RestaurantService {
   async findOne(id: string): Promise<Restaurant> {
     return this.restaurantModel.findById(id).exec();
   }
+
+  async search(keyword: string): Promise<Restaurant[]> {
+    return this.restaurantModel
+      .find({
+        $or: [
+          { name: { $regex: keyword, $options: 'i' } },
+          { location: { $regex: keyword, $options: 'i' } },
+          { cuisineType: { $regex: keyword, $options: 'i' } },
+        ],
+      })
+      .exec();
+  }
 }

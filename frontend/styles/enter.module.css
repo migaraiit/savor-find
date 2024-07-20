@@ -88,3 +88,9 @@
   height: 50%;
   padding: 1rem;
 }
+
+.carouselSection{
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}

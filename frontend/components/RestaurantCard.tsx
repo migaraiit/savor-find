@@ -14,40 +14,31 @@ const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({
   restaurant,
 }) => {
   return (
-    <Card style={{ width: "18rem", marginBottom: "2rem" }}>
-      <Card.Img variant="top" src="/enter1.jpg" />
+    <Card
+      style={{
+        width: "18rem",
+        marginBottom: "2rem",
+        borderWidth: "2px",
+        boxShadow: "-moz-initial",
+      }}
+    >
+      <Card.Img variant="top" src="/restaurant.jpg" />
       <Card.Body>
         <Card.Title>{restaurant.name}</Card.Title>
       </Card.Body>
       <ListGroup className="list-group-flush">
         <ListGroup.Item>Cuisine: {restaurant.cuisineType}</ListGroup.Item>
         <ListGroup.Item>Location: {restaurant.location} in</ListGroup.Item>
-        <ListGroup.Item>Ratingd: {restaurant.rating}</ListGroup.Item>
+        <ListGroup.Item>Rating: {restaurant.rating}</ListGroup.Item>
       </ListGroup>
-      <Card.Body>
-        <Button variant="primary">Review</Button>
+      <Card.Body style={{ alignSelf: "center" }}>
+        <Button variant="outline-warning">Review</Button>
       </Card.Body>
     </Card>
   );
 };
 
 export default RestaurantCard;
-
-// import React from "react";
-// import { Card } from "react-bootstrap";
-
-// interface Restaurant {
-//   _id: string;
-//   name: string;
-//   location: string;
-//   cuisineType: string;
-//   rating: number;
-//   phoneNumber: string;
-// }
-
-// interface RestaurantCardProps {
-//   restaurant: Restaurant;
-// }
 
 // const RestaurantCard: React.FC<RestaurantCardProps> = ({ restaurant }) => {
 //   return (
@@ -68,7 +59,3 @@ export default RestaurantCard;
 //         </Card.Text>
 //       </Card.Body>
 //     </Card>
-//   );
-// };
-
-// export default RestaurantCard;
