@@ -15,6 +15,8 @@ import CardGroup from "react-bootstrap/CardGroup";
 import Link from "next/link";
 import axios from "axios";
 import RestaurantCard from "../components/RestaurantCard";
+import SearchBar from "../components/SearchBar";
+import router, { useRouter } from "next/router";
 
 interface Restaurant {
   _id: string;
@@ -25,8 +27,21 @@ interface Restaurant {
   phoneNumber: string;
 }
 
+interface RestaurantSearch {
+  name: string;
+  location: string;
+  cuisineType: string;
+  rating: number;
+  phoneNumber: string;
+}
+
 const restaurantPage = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const router = useRouter();
+
+  const handleSearch = (keyword: string) => {
+    router.push(`/search-results?keyword=${encodeURIComponent(keyword)}`);
+  };
 
   useEffect(() => {
     axios
@@ -43,6 +58,7 @@ const restaurantPage = () => {
   useEffect(() => {
     console.log("Updated Restaurants State:", restaurants);
   }, [restaurants]);
+
   return (
     <div>
       <div>
@@ -61,7 +77,8 @@ const restaurantPage = () => {
         </Navbar>
       </div>
       <div className={styles.searchBox}>
-        <Form>
+        <SearchBar onSearch={handleSearch} />
+        {/* <Form>
           <Row>
             <Col xs="auto">
               <Form.Control
@@ -82,8 +99,9 @@ const restaurantPage = () => {
               </Link>
             </Col>
           </Row>
-        </Form>
+        </Form> */}
       </div>
+
       <div className={styles.body}>
         <div className={styles.sidebar}>
           <h5>Filter</h5>
@@ -98,6 +116,16 @@ const restaurantPage = () => {
           </Row>
         </div>
       </div>
+
+      {/* <div>
+        <h1>Product Search</h1>
+        <SearchBar onSearch={handleSearch} />
+        <ul>
+          {searchResults.map((product) => (
+            <h3>{product.name}</h3>
+          ))}
+        </ul>
+      </div> */}
     </div>
   );
 };

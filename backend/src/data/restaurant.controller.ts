@@ -11,12 +11,7 @@ export class RestaurantController {
     return this.restaurantService.findAll();
   }
 
-  @Get(':id')
-  async findOne(@Param('id') id: string): Promise<Restaurant> {
-    return this.restaurantService.findOne(id);
-  }
-
-  @Get('search/:keyword')
+  @Get('search')
   async search(@Query('keyword') keyword: string = '') {
     return this.restaurantService.search(keyword);
   }

@@ -13,29 +13,60 @@ interface Restaurant {
   phoneNumber: string;
 }
 
+// const testPage = () => {
+//   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+
+//   useEffect(() => {
+//     axios
+//       .get("http://localhost:3000/restaurant")
+//       .then((response) => {
+//         console.log("Fetched Data:", response.data); // Log fetched data
+//         setRestaurants(response.data);
+//       })
+//       .catch((error) => {
+//         console.error("There was an error fetching the restaurants!", error);
+//       });
+//   }, []);
+
+//   useEffect(() => {
+//     console.log("Updated Restaurants State:", restaurants);
+//   }, [restaurants]);
+
+//   return (
+//     <Container>
+//       <Carousel>
+//         {restaurants.map((restaurant) => (
+//           <Carousel.Item
+//             key={restaurant._id}
+//             style={{ alignContent: "center" }}
+//           >
+//             <RestaurantCard restaurant={restaurant} />
+//           </Carousel.Item>
+//         ))}
+//       </Carousel>
+//     </Container>
+//   );
+// };
+
 const testPage = () => {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const [searchResults, setSearchResults] = useState<Restaurant[]>([]);
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:3000/restaurant")
-      .then((response) => {
-        console.log("Fetched Data:", response.data); // Log fetched data
-        setRestaurants(response.data);
-      })
-      .catch((error) => {
-        console.error("There was an error fetching the restaurants!", error);
-      });
-  }, []);
-
-  useEffect(() => {
-    console.log("Updated Restaurants State:", restaurants);
-  }, [restaurants]);
+  const handleSearch = async (keyword: string) => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/products/search?keyword=${keyword}`
+      );
+      const data = await response.json();
+      setSearchResults(data);
+    } catch (error) {
+      console.error("Error searching products:", error);
+    }
+  };
 
   return (
     <Container>
       <Carousel>
-        {restaurants.map((restaurant) => (
+        {searchResults.map((restaurant) => (
           <Carousel.Item
             key={restaurant._id}
             style={{ alignContent: "center" }}
@@ -47,32 +78,5 @@ const testPage = () => {
     </Container>
   );
 };
-
-// const testPage = () => {
-//   const handleSearch = (keyword: string) => {
-//    useEffect(() => {
-//     axios
-//       .get("http://localhost:3000/restaurant", {
-//         params: {
-//           keyword: keyword,
-//         },
-//       })
-//       .then((response) => {
-//         console.log("Fetched Data:", response.data); // Log fetched data
-//         setRestaurants(response.data);
-//       })
-//       .catch((error) => {
-//         console.error("There was an error fetching the restaurants!", error);
-//       });
-//    }
-//   };
-
-//   return (
-//     <div>
-//       <SearchBar onSearch={handleSearch} />
-//       {/* Display search results here */}
-//     </div>
-//   );
-// };
 
 export default testPage;

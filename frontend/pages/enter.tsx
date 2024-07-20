@@ -11,6 +11,8 @@ import Col from "react-bootstrap/Col";
 import Link from "next/link";
 import axios from "axios";
 import RestaurantCard from "../components/RestaurantCard";
+import { useRouter } from "next/router";
+import SearchBar from "../components/SearchBar";
 
 interface Restaurant {
   _id: string;
@@ -26,6 +28,11 @@ const EnterPage: React.FC = () => {
   const mainPageRef = useRef<HTMLDivElement>(null);
   const [overflow, setOverflow] = useState<"hidden" | "auto">("hidden");
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
+  const router = useRouter();
+
+  const handleSearch = (keyword: string) => {
+    router.push(`/search-results?keyword=${encodeURIComponent(keyword)}`);
+  };
 
   useEffect(() => {
     axios
@@ -105,26 +112,7 @@ const EnterPage: React.FC = () => {
         style={{ overflow: overflow }}
       >
         <div className={styles.mainContent}>
-          <Form>
-            <Row>
-              <Col xs="auto">
-                <Form.Control
-                  type="text"
-                  placeholder="Search"
-                  className={styles.searchBox}
-                />
-              </Col>
-              <Col xs="auto">
-                <Button
-                  variant="outline-success"
-                  type="submit"
-                  className={styles.button}
-                >
-                  Find
-                </Button>
-              </Col>
-            </Row>
-          </Form>
+          <SearchBar onSearch={handleSearch} />
         </div>
         <div
           style={{

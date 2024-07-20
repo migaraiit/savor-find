@@ -13,10 +13,6 @@ export class RestaurantService {
     return this.restaurantModel.find().exec();
   }
 
-  async findOne(id: string): Promise<Restaurant> {
-    return this.restaurantModel.findById(id).exec();
-  }
-
   async search(keyword: string): Promise<Restaurant[]> {
     return this.restaurantModel
       .find({
