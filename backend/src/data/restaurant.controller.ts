@@ -1,6 +1,6 @@
-import { Controller, Get, Param, Query } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
 import { RestaurantService } from './restaurant.service';
-import { Restaurant } from './restaurant.schema';
+import { Restaurant, Review } from './restaurant.schema';
 
 @Controller('restaurant')
 export class RestaurantController {
@@ -19,5 +19,10 @@ export class RestaurantController {
   @Get(':id')
   async findById(@Param('id') id: string) {
     return this.restaurantService.findById(id);
+  }
+
+  @Post(':id/review')
+  async addReview(@Param('id') restaurantId: string, @Body() review: Review) {
+    return this.restaurantService.addReview(restaurantId, review);
   }
 }
