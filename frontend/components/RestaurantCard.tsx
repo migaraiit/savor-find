@@ -1,8 +1,11 @@
+import { useRouter } from "next/router";
 import React from "react";
 import { Button, Card, ListGroup } from "react-bootstrap";
 import ProgressBar from "react-bootstrap/ProgressBar";
+// Rest of the code remains unchanged
 
 interface Restaurant {
+  _id: string;
   name: string;
   location: string;
   cuisineType: string;
@@ -13,6 +16,10 @@ interface Restaurant {
 const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({
   restaurant,
 }) => {
+  const router = useRouter();
+  const handleClick = () => {
+    router.push(`/${restaurant._id}`);
+  };
   return (
     <Card
       style={{
@@ -32,7 +39,9 @@ const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({
         <ListGroup.Item>Rating: {restaurant.rating}</ListGroup.Item>
       </ListGroup>
       <Card.Body style={{ alignSelf: "center" }}>
-        <Button variant="outline-warning">Review</Button>
+        <Button variant="outline-warning" onClick={handleClick}>
+          Review
+        </Button>
       </Card.Body>
     </Card>
   );

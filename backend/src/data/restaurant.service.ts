@@ -24,4 +24,9 @@ export class RestaurantService {
       })
       .exec();
   }
+
+  async findById(id: string): Promise<Restaurant> {
+    const restaurant = await this.restaurantModel.findById(id).exec();
+    return restaurant;
+  }
 }

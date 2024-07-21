@@ -15,4 +15,9 @@ export class RestaurantController {
   async search(@Query('keyword') keyword: string = '') {
     return this.restaurantService.search(keyword);
   }
+
+  @Get(':id')
+  async findById(@Param('id') id: string) {
+    return this.restaurantService.findById(id);
+  }
 }
