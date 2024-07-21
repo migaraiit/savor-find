@@ -33,7 +33,7 @@ const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
         <Col xs="auto">
           <Form.Control
             type="text"
-            placeholder="Search"
+            placeholder="Search for restaurants by name, cuisine type, location, and more."
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
             className={styles.searchBar}

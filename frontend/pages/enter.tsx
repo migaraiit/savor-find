@@ -98,10 +98,15 @@ const EnterPage: React.FC = () => {
         </Carousel.Item>
       </Carousel>
       <div className={styles.content}>
-        <h1>Welcome to Our Website</h1>
-        <p>Discover amazing content and features</p>
+        <h1>Welcome</h1>
+        <p>
+          Our platform brings you genuine reviews and ratings from food
+          enthusiasts just like you. Whether you're looking for a cozy café, a
+          trendy bistro, or a luxurious fine dining restaurant, we've got you
+          covered.
+        </p>
         <Button variant="primary" size="lg" onClick={handleContinue}>
-          Continue
+          Get Started Now
         </Button>
       </div>
 
@@ -112,11 +117,24 @@ const EnterPage: React.FC = () => {
         style={{ overflow: overflow }}
       >
         <div className={styles.mainContent}>
-          <SearchBar onSearch={handleSearch} />
+          <div>
+            <h3 style={{ textAlign: "center", marginBottom: "3rem" }}>
+              Browse through thousands of restaurant profiles and find the
+              perfect spot for any occasion.
+            </h3>
+          </div>
+          <div>
+            {/* Search for restaurants by name, cuisine type, location, and more. */}
+            <SearchBar onSearch={handleSearch} />
+          </div>
         </div>
         <div
           style={{
-            width: "150vh",
+            width: "80vh",
+            padding: "1rem",
+            borderRadius: "20px",
+            boxShadow: "0 0 10px rgba(0, 0, 0, 0.3)",
+            margin: "auto",
           }}
         >
           <div className={styles.popularTopic}>
@@ -128,8 +146,10 @@ const EnterPage: React.FC = () => {
           <div className={styles.carouselSection}>
             <Carousel
               style={{
-                width: "50vh",
+                width: "auto",
+                margin: "auto",
               }}
+              controls={true}
             >
               {restaurants.map((restaurant) => (
                 <Carousel.Item

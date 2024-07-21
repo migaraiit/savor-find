@@ -43,6 +43,19 @@ const restaurantPage = () => {
     router.push(`/search-results?keyword=${encodeURIComponent(keyword)}`);
   };
 
+  const [minValue, setMinValue] = useState(0);
+  const [maxValue, setMaxValue] = useState(5);
+
+  const handleMinValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newMinValue = parseInt(event.target.value);
+    setMinValue(newMinValue * 0.1);
+  };
+
+  const handleMaxValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newMaxValue = parseInt(event.target.value);
+    setMaxValue(newMaxValue * 0.1);
+  };
+
   useEffect(() => {
     axios
       .get("http://localhost:3000/restaurant")
@@ -104,16 +117,71 @@ const restaurantPage = () => {
 
       <div className={styles.body}>
         <div className={styles.sidebar}>
-          <h5>Filter</h5>
+          <div>
+            <h5>Sort by</h5>
+            <Form style={{ paddingLeft: "1rem", marginBottom: "1rem" }}>
+              {/* {["radio"].map((type) => (
+              <div key={`default-${type}`} className="mb-3">
+                <Form.Check label={`highest rating`} id={``} />
+              </div>
+            ))} */}
+              <Form.Check
+                type="radio"
+                label="Highest Rating"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios1"
+              ></Form.Check>
+              <Form.Check
+                type="radio"
+                label="Lowest Rating"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios2"
+              />
+            </Form>
+          </div>
+          <div>
+            <h5>Filter by</h5>
+          </div>
+          <div style={{ paddingLeft: "1rem" }}>
+            <Form>
+              <Form.Check
+                type="checkbox"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios2"
+                label="Rating"
+              ></Form.Check>
+            </Form>
+            <Form.Label>Min {minValue.toFixed(1)}</Form.Label>
+            <Form.Range
+              name="minValue"
+              value={minValue * 10}
+              onChange={handleMinValue}
+              min={0}
+              max={50}
+              // step={}
+            />
+            <Form.Label>Max {maxValue.toFixed(1)}</Form.Label>
+            <Form.Range
+              name="maxValue"
+              value={maxValue * 10}
+              onChange={handleMaxValue}
+              min={0}
+              max={50}
+            />
+          </div>
         </div>
         <div className={styles.contentBody}>
-          <Row xs={1} md={3} className="g-4">
-            {restaurants.map((restaurant) => (
-              <Col key={restaurant._id}>
-                <RestaurantCard restaurant={restaurant} />
-              </Col>
-            ))}
-          </Row>
+          <div></div>
+          <div>
+            <h2 style={{ marginBottom: "2rem" }}>Restaurants</h2>
+            <Row xs={1} md={3} className="g-4">
+              {restaurants.map((restaurant) => (
+                <Col key={restaurant._id}>
+                  <RestaurantCard restaurant={restaurant} />
+                </Col>
+              ))}
+            </Row>
+          </div>
         </div>
       </div>
 

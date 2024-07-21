@@ -54,18 +54,20 @@
     margin-right: 2.5rem;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    /* justify-content: center;
+    align-items: center; */
     margin-top: 2rem;
     margin-left: 2rem;
     width: 20%;
     height: 80vh;
-    background-color: #8a928c94;
+    background-color: #0ee24394;
     border-radius: 10px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 1rem;
 }
 
 .contentBody{
     border-radius: 5px;
     box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    padding: 3rem;
 }
