@@ -1,4 +1,24 @@
 .contentBody{
+    padding: 2rem;
+    margin-top: 3rem;
+    width: 80%;
     border-radius: 5px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.185);
+    margin-left: 3rem;
 }
+
+.navbar {
+    display: flex;
+    padding: 1rem 1rem; 
+    background-color: #ffffff; 
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%; 
+    z-index: 11;
+  }
+  .brand {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #000000;
+  }

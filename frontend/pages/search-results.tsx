@@ -2,9 +2,8 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "../styles/search-results.module.css";
-import { Col, Row } from "react-bootstrap";
+import { Col, Container, Nav, Navbar, Row } from "react-bootstrap";
 import RestaurantCard from "../components/RestaurantCard";
-
 interface Restaurant {
   _id: string;
   name: string;
@@ -40,14 +39,36 @@ export default function SearchResults() {
   };
 
   return (
-    <div className={styles.contentBody}>
-      <Row xs={1} md={3} className="g-4">
-        {results.map((restaurant) => (
-          <Col key={restaurant._id}>
-            <RestaurantCard restaurant={restaurant} />
-          </Col>
-        ))}
-      </Row>
+    <div>
+      <div>
+        <Navbar className={styles.navbar} fixed="top">
+          <Container style={{}}>
+            <Navbar.Brand href="/enter" className={styles.brand}>
+              SavorFind
+            </Navbar.Brand>
+            <Navbar.Toggle />
+            <Navbar.Collapse className="justify-content-end">
+              <Nav>
+                <Nav.Link href="/">Login</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </div>
+      <div>
+        <h3 style={{ marginTop: "8rem", marginLeft: "3rem" }}>
+          Search Results
+        </h3>
+      </div>
+      <div className={styles.contentBody}>
+        <Row xs={1} md={3} className="g-4">
+          {results.map((restaurant) => (
+            <Col key={restaurant._id}>
+              <RestaurantCard restaurant={restaurant} />
+            </Col>
+          ))}
+        </Row>
+      </div>
     </div>
   );
 }
