@@ -11,6 +11,7 @@ interface Restaurant {
   cuisineType: string;
   rating: number;
   phoneNumber: string;
+  priceRange: string;
 }
 
 export default function SearchResults() {

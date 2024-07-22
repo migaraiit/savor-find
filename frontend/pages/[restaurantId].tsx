@@ -21,6 +21,7 @@ interface Restaurant {
   phoneNumber: string;
   hours: Record<string, string>;
   reviews: Array<{ user: string; comment: string; rating: number }>;
+  priceRange: string;
 }
 
 interface Review {
@@ -101,6 +102,9 @@ const RestaurantDetails: React.FC = () => {
               </Card.Text>
               <Card.Text>
                 Phone Number: <b>{restaurant?.phoneNumber}</b>
+              </Card.Text>
+              <Card.Text>
+                Price Range: <b>{restaurant?.priceRange}</b>
               </Card.Text>
               <Card.Text>
                 Opening Hours:

@@ -25,6 +25,7 @@ interface Restaurant {
   cuisineType: string;
   rating: number;
   phoneNumber: string;
+  priceRange: string;
 }
 
 interface RestaurantSearch {
@@ -54,6 +55,19 @@ const restaurantPage = () => {
   const handleMaxValue = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newMaxValue = parseInt(event.target.value);
     setMaxValue(newMaxValue * 0.1);
+  };
+
+  const [minValuePrice, setMinValuePrice] = useState(0);
+  const [maxValuePrice, setMaxValuePrice] = useState(200);
+
+  const handleMinValuePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newMinValuePrice = parseInt(event.target.value);
+    setMinValuePrice(newMinValuePrice);
+  };
+
+  const handleMaxValuePrice = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const newMaxValuePrice = parseInt(event.target.value);
+    setMaxValuePrice(newMaxValuePrice);
   };
 
   useEffect(() => {
@@ -151,7 +165,7 @@ const restaurantPage = () => {
                 label="Rating"
               ></Form.Check>
             </Form>
-            <Form.Label>Min {minValue.toFixed(1)}</Form.Label>
+            <Form.Label>Min :{minValue.toFixed(1)}</Form.Label>
             <Form.Range
               name="minValue"
               value={minValue * 10}
@@ -160,13 +174,46 @@ const restaurantPage = () => {
               max={50}
               // step={}
             />
-            <Form.Label>Max {maxValue.toFixed(1)}</Form.Label>
+            <Form.Label>Max :{maxValue.toFixed(1)}</Form.Label>
             <Form.Range
               name="maxValue"
               value={maxValue * 10}
               onChange={handleMaxValue}
               min={0}
               max={50}
+            />
+          </div>
+          <div
+            style={{
+              paddingLeft: "1rem",
+              borderBottomWidth: "10px",
+              borderColor: "green",
+            }}
+          >
+            <Form>
+              <Form.Check
+                type="checkbox"
+                name="formHorizontalRadios"
+                id="formHorizontalRadios2"
+                label="Price"
+              ></Form.Check>
+            </Form>
+            <Form.Label>Min :{minValuePrice}$</Form.Label>
+            <Form.Range
+              name="minValue"
+              value={minValuePrice}
+              onChange={handleMinValuePrice}
+              min={0}
+              max={200}
+              // step={}
+            />
+            <Form.Label>Max :{maxValuePrice}$</Form.Label>
+            <Form.Range
+              name="maxValue"
+              value={maxValuePrice}
+              onChange={handleMaxValuePrice}
+              min={0}
+              max={200}
             />
           </div>
         </div>

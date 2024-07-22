@@ -21,6 +21,7 @@ interface Restaurant {
   cuisineType: string;
   rating: number;
   phoneNumber: string;
+  priceRange: string;
 }
 
 const EnterPage: React.FC = () => {
@@ -105,7 +106,7 @@ const EnterPage: React.FC = () => {
           trendy bistro, or a luxurious fine dining restaurant, we've got you
           covered.
         </p>
-        <Button variant="primary" size="lg" onClick={handleContinue}>
+        <Button variant="success" size="lg" onClick={handleContinue}>
           Get Started Now
         </Button>
       </div>

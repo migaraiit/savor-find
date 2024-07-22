@@ -11,6 +11,7 @@ interface Restaurant {
   cuisineType: string;
   rating: number;
   phoneNumber: string;
+  priceRange: string;
 }
 
 const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({
@@ -36,6 +37,7 @@ const RestaurantCard: React.FC<{ restaurant: Restaurant }> = ({
       <ListGroup className="list-group-flush">
         <ListGroup.Item>Cuisine: {restaurant.cuisineType}</ListGroup.Item>
         <ListGroup.Item>Location: {restaurant.location} in</ListGroup.Item>
+        <ListGroup.Item>Price: {restaurant.priceRange}</ListGroup.Item>
         <ListGroup.Item>Rating: {restaurant.rating}</ListGroup.Item>
       </ListGroup>
       <Card.Body style={{ alignSelf: "center" }}>
