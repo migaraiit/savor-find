@@ -37,7 +37,7 @@ const RestaurantDetails: React.FC = () => {
 
   const [user, setUser] = useState("");
   const [comment, setComment] = useState("");
-  const [rating, setRating] = useState(0);
+  const [rating, setRating] = useState(1);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -90,7 +90,9 @@ const RestaurantDetails: React.FC = () => {
               <Card.Title style={{ fontSize: "2rem" }}>
                 {restaurant?.name}
               </Card.Title>
-              <Card.Text>{restaurant?.description}</Card.Text>
+              <Card.Text>
+                <i>{restaurant?.description}</i>
+              </Card.Text>
               <Card.Text>
                 Cuisine type: <b>{restaurant?.cuisineType}</b>
               </Card.Text>
@@ -178,8 +180,11 @@ const RestaurantDetails: React.FC = () => {
                   />
                   <input
                     type="number"
+                    max="5"
+                    min="1 "
+                    step="0.1"
                     value={rating}
-                    onChange={(e) => setRating(Number)}
+                    onChange={(e) => setRating(Number(e.target.value))}
                     placeholder="Rating"
                   />
                   <Button

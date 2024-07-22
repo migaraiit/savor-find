@@ -1,3 +1,4 @@
+// this page is for testing purposes only
 import React, { use, useEffect, useState } from "react";
 import axios from "axios";
 import RestaurantCard from "../components/RestaurantCard";
